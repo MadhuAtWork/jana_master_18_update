@@ -18,7 +18,7 @@ function readFormData() {
     formData["LOCATION_CODE_master"] = document.getElementById("LOCATION_CODE_master").value;
     formData["CITY_CODE_master"] = document.getElementById("CITY_CODE_master").value;
     formData["NAME_master"] = document.getElementById("NAME_master").value;
-    formData["UPDATE_TIME_master"] = document.getElementById("UPDATE_TIME_master").value;
+    // formData["UPDATE_TIME_master"] = document.getElementById("UPDATE_TIME_master").value;
     return formData;
 }
 
@@ -49,7 +49,7 @@ function insertNewRecord(data) {
     var LOCATION_CODE_master = document.getElementById("LOCATION_CODE_master").value;
     var CITY_CODE_master = document.getElementById("CITY_CODE_master").value;
     var NAME_master = document.getElementById("NAME_master").value;
-    var UPDATE_TIME_master = document.getElementById("UPDATE_TIME_master").value;
+    // var UPDATE_TIME_master = document.getElementById("UPDATE_TIME_master").value;
 
     if (Meeting_center_code_master == "" || Meeting_center_code_master == null || Meeting_center_code_master == undefined) {
 
@@ -80,12 +80,14 @@ function insertNewRecord(data) {
 
                             document.getElementById("NAME_master_error").innerHTML = " Enter valid details"
 
-                        } else
-                            if (UPDATE_TIME_master == "" || UPDATE_TIME_master == null || UPDATE_TIME_master == undefined) {
+                        } 
+                        // else
+                        //     if (UPDATE_TIME_master == "" || UPDATE_TIME_master == null || UPDATE_TIME_master == undefined) {
 
-                                document.getElementById("UPDATE_TIME_master_error").innerHTML = " enter valid details"
+                        //         document.getElementById("UPDATE_TIME_master_error").innerHTML = " enter valid details"
 
-                            } else {
+                        //     } 
+                            else {
 
                                 var table = document.getElementById("employeeList").getElementsByTagName('tbody')[0];
                                 var newRow = table.insertRow(table.length);
@@ -102,13 +104,20 @@ function insertNewRecord(data) {
                                 cell6 = newRow.insertCell(5);
                                 cell6.innerHTML = data.NAME_master;
                                 cell7 = newRow.insertCell(6);
-                                cell7.innerHTML = data.UPDATE_TIME_master;
+                                // cell7.innerHTML = data.UPDATE_TIME_master;
                                 cell8 = newRow.insertCell(7);
-                                cell8.innerHTML = `<button onClick="onEdit(this)" id="master_edit">Edit</button>`
+                                cell8.innerHTML = `<button onClick="onEdit(this)" id="meeting_master_edit_button" >Edit</button>`
+                                alert("record successfull");
+                                var form1 = document.getElementById("form1");
+                                if (form1.style.display === "none") {
+                                    form1.style.display = "flex";
+                                } else {
+                                    form1.style.display = "none";
+                                }
                             }
 
-    var master_edit = document.getElementById("master_edit");
-    master_edit.addEventListener( 'click',function(){
+    var meeting_master_edit_button = document.getElementById("meeting_master_edit_button");
+    meeting_master_edit_button.addEventListener( 'click',function(){
                                     var form1 = document.getElementById("form1");
                                     if (form1.style.display === "none") {
                                         form1.style.display = "flex";
@@ -116,6 +125,7 @@ function insertNewRecord(data) {
                                         form1.style.display = "flex";
                                     }
                                 });
+
 
 }
 
@@ -126,7 +136,7 @@ function resetForm() {
     document.getElementById("LOCATION_CODE_master").value = "";
     document.getElementById("CITY_CODE_master").value = "";
     document.getElementById("NAME_master").value = "";
-    document.getElementById("UPDATE_TIME_master").value = "";
+    // document.getElementById("UPDATE_TIME_master").value = "";
     
     selectedRow = null;
 }
@@ -139,7 +149,10 @@ function onEdit(td) {
     document.getElementById("LOCATION_CODE_master").value = selectedRow.cells[3].innerHTML;
     document.getElementById("CITY_CODE_master").value = selectedRow.cells[4].innerHTML;
     document.getElementById("NAME_master").value = selectedRow.cells[5].innerHTML;
-    document.getElementById("UPDATE_TIME_master").value = selectedRow.cells[6].innerHTML;
+    // document.getElementById("UPDATE_TIME_master").value = selectedRow.cells[6].innerHTML;
+
+
+    document.getElementById("meeting_master_header_text").innerHTML =`<divc style="color:white">EDIT</div>`
 }
 
 function updateRecord(formData) {
@@ -149,8 +162,37 @@ function updateRecord(formData) {
     selectedRow.cells[3].innerHTML = formData.LOCATION_CODE_master;
     selectedRow.cells[4].innerHTML = formData.CITY_CODE_master;
     selectedRow.cells[5].innerHTML = formData.NAME_master;
-    selectedRow.cells[6].innerHTML = formData.UPDATE_TIME_master;
+    // selectedRow.cells[6].innerHTML = formData.UPDATE_TIME_master;
+    alert("record updated");
+    var form1 = document.getElementById("form1");
+    if (form1.style.display === "none") {
+        form1.style.display = "flex";
+    } else {
+        form1.style.display = "none";
+    }
+
 }
+
+function form_master_add() {
+    var form1 = document.getElementById("form1");
+    if (form1.style.display === "none") {
+        form1.style.display = "flex";
+    } else {
+        form1.style.display = "flex";
+    }
+    document.getElementById("meeting_master_header_text").innerHTML =`<divc style="color:white">NEW</div>`
+    
+}
+function form_master_cancel() {
+    var form1 = document.getElementById("form1");
+    if (form1.style.display === "none") {
+        form1.style.display = "flex";
+    } else {
+        form1.style.display = "none";
+    }
+}
+
+
 
 
 
@@ -165,7 +207,7 @@ function searchTable() {
         for (j = 0; j < td.length; j++) {
             if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
                 found = true;
-            }
+            }    
         }
         if (found) {
             tr[i].style.display = "";
@@ -174,24 +216,70 @@ function searchTable() {
             tr[i].style.display = "none";
         }
     }
+
     document.getElementById("myInput_BRANCH_CODE_search").value="";
     document.getElementById("myInput_LOCATION_CODE_search").value="";
-    
+    // selectedRow = td.parentElement.parentElement;
+
+    document.getElementById("Meeting_center_code_master").value = selectedRow.cells[0].innerHTML;
+    document.getElementById("AREA_CODE_master").value = selectedRow.cells[1].innerHTML;
+    document.getElementById("BRANCH_CODE_master").value = selectedRow.cells[2].innerHTML;
+    document.getElementById("LOCATION_CODE_master").value = selectedRow.cells[3].innerHTML;
+    document.getElementById("CITY_CODE_master").value = selectedRow.cells[4].innerHTML;
+    document.getElementById("NAME_master").value = selectedRow.cells[5].innerHTML;
+    document.getElementById("UPDATE_TIME_master").value = selectedRow.cells[6].innerHTML; 
+
 }
 
-function form_master_add() {
-    var form1 = document.getElementById("form1");
-    if (form1.style.display === "none") {
-        form1.style.display = "flex";
-    } else {
-        form1.style.display = "flex";
+
+
+// function searchTable() {
+//     var input, filter, found, table, tr, td, i, j;
+//     input = document.getElementById("CITY_CODE_search");
+//     filter = input.value.toUpperCase();
+//     table = document.getElementById("myTable");
+//     tr = table.getElementsByTagName("tr");
+//     for (i = 0; i < tr.length; i++) {
+//         td = tr[i].getElementsByTagName("td");
+//         for (j = 0; j < td.length; j++) {
+//             if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
+//                 found = true;
+//             }
+//         }
+//         if (found) {
+//             tr[i].style.display = "";
+//             found = false;
+//         } else {
+//             tr[i].style.display = "none";
+//         }
+//     }
+
+//     document.getElementById("myInput_BRANCH_CODE_search").value="";
+//     document.getElementById("myInput_LOCATION_CODE_search").value="";
+//     selectedRow = td.parentElement.parentElement;
+//     document.getElementById("Meeting_center_code_master").value = selectedRow.cells[0].innerHTML;
+//     document.getElementById("AREA_CODE_master").value = selectedRow.cells[1].innerHTML;
+//     document.getElementById("BRANCH_CODE_master").value = selectedRow.cells[2].innerHTML;
+//     document.getElementById("LOCATION_CODE_master").value = selectedRow.cells[3].innerHTML;
+//     document.getElementById("CITY_CODE_master").value = selectedRow.cells[4].innerHTML;
+//     document.getElementById("NAME_master").value = selectedRow.cells[5].innerHTML;
+//     document.getElementById("UPDATE_TIME_master").value = selectedRow.cells[6].innerHTML; 
+// }
+
+
+
+function NAME_master_onkeypress(e, t) {
+    var inputValue = event.which;
+    // allow letters and whitespaces only.
+    if (!(inputValue >= 65 && inputValue <= 120) && (inputValue != 32 && inputValue != 0)) {
+        event.preventDefault();
     }
 }
-function form_master_cancel() {
-    var form1 = document.getElementById("form1");
-    if (form1.style.display === "none") {
-        form1.style.display = "flex";
-    } else {
-        form1.style.display = "none";
-    }
-}
+
+// function NAME_master_onkeypress(e, t) {
+//     var charCode = event.which;
+//     // allow letters and whitespaces only.
+//     if ((charCode > 31 && (charCode < 48 || charCode > 57))) {
+//         event.preventDefault();
+//     }
+// }
