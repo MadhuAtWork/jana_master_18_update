@@ -8,11 +8,11 @@ table{
 table.list{
     width: 100%;
 }
-                       
+/*                        
 th{
     background-color: rgb(187, 6, 121);
     color: white;
-}
+} */
 td, th{
     /* border: 1px solid #dddddd; */
     text-align: left;
@@ -34,6 +34,7 @@ form div.form-action-buttons{
     display: flex;
     justify-content: center;
     align-items:end;
+    margin-left: 60px;
     /* background-color: #da610a */
 }
 form div.form-action-buttons input{
@@ -53,6 +54,13 @@ background-color: white;
     /* border: 1px solid; */
   box-shadow:5px 5px 5px #aaaaaa;
 }
+.main_master_header{
+width: 100%;
+padding: 5px;
+/* height: 30px; */
+background-color: #d8107c ;
+color: white;
+}
 a{
     cursor: pointer;
     text-decoration: underline;
@@ -65,6 +73,13 @@ label.validation-error{
 }
 .hide{
     display: none;
+}
+.master_form_main{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 .main_master{
     width:40%;
@@ -109,4 +124,10 @@ label.validation-error{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+#meeting_master_edit_button{
+    background-color: #da610a;
+    border: 0;
+    padding: 5px;
+    color: white;
 }
