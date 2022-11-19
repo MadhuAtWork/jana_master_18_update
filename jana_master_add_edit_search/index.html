@@ -24,6 +24,9 @@
     <div class="master_container">
 
         <form>
+            <div class="main_master_header" >Search</div>
+
+            <div class="master_form_main">
             <div class="main_master">
                 <label>BRANCH_CODE</label>
                 <div>
@@ -37,7 +40,7 @@
                     <input id='myInput_LOCATION_CODE_search' name="CITY_CODE_search" type='text'>
                 </div>
             </div>
-          
+          </div>
             <div class="form-action-buttons">
                 <input type="button" value="Search" onclick="searchTable()">
             </div>
@@ -68,6 +71,8 @@
     <br>
     <div class="master_container_new" id="form1">
         <form onsubmit="event.preventDefault();onFormSubmit();" autocomplete="off">
+            <div class="main_master_header" id="meeting_master_header_text"></div>
+          <div class="master_form_main">
             <div class="main_master">
                 <label>MEETING_CENTER_CODE</label>
                 <div>
@@ -107,17 +112,18 @@
             <div class="main_master">
                 <label>NAME</label>
                 <div>
-                    <input type="text" name="NAME" id="NAME_master">
+                    <input type="text" name="NAME" id="NAME_master" onkeypress="NAME_master_onkeypress()">
                 </div>
                 <div><span id="NAME_master_error"></span></div>
             </div>
-            <div class="main_master">
+            <!-- <div class="main_master">
                 <label>UPDATE_TIME</label>
                 <div>
                     <input type="datetime-local" name="UPDATE_TIME" id="UPDATE_TIME_master">
                 </div>
                 <div><span id="UPDATE_TIME_master_error"></span></div>
-            </div>
+            </div> -->
+          </div>
             <div class="form-action-buttons">
                 <input type="submit" value="Save" id="form1show" >
                 <input type="button" value="cancel" id="form1show" onclick="form_master_cancel()" >
